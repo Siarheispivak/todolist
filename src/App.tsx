@@ -49,7 +49,6 @@ function App() {
         ],
         [id_2]: [
             {id: v1(), title: "Milk", isDone: true},
-            // {id: v1(), title: "Meat", isDone: true},
             {id: v1(), title: "Wheat", isDone: false},
         ],
 
@@ -59,14 +58,11 @@ function App() {
         setTasks({...tasks,
             [todoListId]: tasks[todoListId].filter(task => task.id !== taskId)
         })
-
     }
     const addTask = (title: string, todoListId: string) => {
         const newTask: TaskType = {id: v1(), title: title, isDone: false}
 
-        setTasks({...tasks,
-            [todoListId]: [newTask, ...tasks[todoListId]]
-        })
+        setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
     }
     const changeTaskStatus = (taskId: string, isDone: boolean, todoListId: string) => {
         setTasks({...tasks, [todoListId]: tasks[todoListId].map(t => t.id === taskId ? {...t, isDone: isDone} : t)
@@ -100,8 +96,7 @@ function App() {
         setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: nextFilterValue} : tl))
     }
 
-    const getFilteredTasks =
-        (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+    const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
             switch (filter) {
                 case "completed":
                     return tasks.filter(task => task.isDone)
