@@ -15,10 +15,7 @@ const AddItemForm = (props:AddItemFormPropsType) => {
         error && setError(false)
         setTitle(e.currentTarget.value)
     }
-    const errorStyles = {fontWeight: "bold", color: "red"}
-    // const errorMessage = error
-    //     ? <div style={errorStyles}>Please, enter new title</div>
-    //     : null
+
 
     const onEnterAddItem = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -47,7 +44,6 @@ const AddItemForm = (props:AddItemFormPropsType) => {
                 error={error}
                 helperText={error && 'Please, enter new title'}
             />
-
             <Button
                 sx={{fontSize:"10px",p: "4px 4px", }}
                 size="small"
@@ -55,7 +51,6 @@ const AddItemForm = (props:AddItemFormPropsType) => {
                 onClick={addItem}
                 endIcon={<PostAddOutlinedIcon/>}
             >Add</Button>
-            {/*{errorMessage}*/}
         </div>
     );
 };

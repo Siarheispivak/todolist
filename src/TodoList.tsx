@@ -4,11 +4,6 @@ import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, ButtonGroup, Checkbox, IconButton, List, ListItem, Typography} from "@mui/material";
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
-//rsc
-// typescript =>
-// 1. Variable
-// 2. Param of func
-// 3. Return of func
 
 type TodoListPropsType = {
     todoListId: string
@@ -38,9 +33,7 @@ const TodoList = (props: TodoListPropsType) => {
                     props.changeTaskTitle(task.id, title, props.todoListId)
                 }
                 return (
-                    <ListItem key={task.id}
-                              sx={{p: "0px"}}
-                    >
+                    <ListItem key={task.id} sx={{p: "0px"}}>
                         <Checkbox
                             size="small"
                             checked={task.isDone}
