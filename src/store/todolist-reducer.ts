@@ -1,5 +1,6 @@
-import {TodoListType} from "../App";
+import {FilterValuesType, TodoListType} from "../App";
 import {v1} from "uuid";
+
 
 
 export type ActionsType =
@@ -8,7 +9,8 @@ export type ActionsType =
     | changeTodoListTitleACType
     | changeTodoListFilterACType
 
-export const TodolistReducer = (state: Array<TodoListType>, action: ActionsType) => {
+
+export const TodolistReducer = (state: Array<TodoListType> , action: ActionsType) => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             return state.filter(tl => tl.id !== action.payload.id)
@@ -25,7 +27,7 @@ export const TodolistReducer = (state: Array<TodoListType>, action: ActionsType)
             return state.map(tl => tl.id === action.payload.id ? {...tl, title: action.payload.title} : tl)
         }
         case 'CHANGE-FILTER': {
-            return state.map(tl => tl.id === action.payload.id ? {...tl, filter: action.payload.filter} : tl)
+            return state.map(t => t.id === action.payload.id ? {...t,filter:action.payload.filter}:t)
         }
         default:
             return state
@@ -43,12 +45,12 @@ export const removeTodolistAC = (todolistID: string) => {
 }
 
 export type addTodolistACType = ReturnType<typeof addTodolistAC>
-export const addTodolistAC = (todolistTitle:string) => {
+export const addTodolistAC = (todolistTitle: string) => {
     return {
         type: 'ADD-TODOLIST',
-        payload:{
-            todolistID:v1(),
-            todolistTitle:todolistTitle
+        payload: {
+            todolistID: v1(),
+            todolistTitle: todolistTitle
         }
     } as const
 }
@@ -65,7 +67,7 @@ export const changeTodoListTitleAC = (todolistID: string, newTitle: string) => {
 }
 
 type changeTodoListFilterACType = ReturnType<typeof changeTodoListFilterAC>
-export const changeTodoListFilterAC = (todolistID: string, newFilter: string) => {
+export const changeTodoListFilterAC = (todolistID: string, newFilter: FilterValuesType) => {
     return {
         type: 'CHANGE-FILTER',
         payload: {
