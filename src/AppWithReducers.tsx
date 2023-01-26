@@ -40,8 +40,8 @@ export type FilterValuesType = "all" | "active" | "completed"
 
 function AppWithReducers() {
     //BLL:
-    const id_1 = v1();
-    const id_2 = v1();
+    let id_1 = v1();
+    let id_2 = v1();
 
     let [todoLists, dispatchToTodolistsReducer] = useReducer(TodolistReducer, [
         {id: id_1, title: "What to learn", filter: "all"},
@@ -90,7 +90,7 @@ function AppWithReducers() {
         dispatchToTasksReducer(action)
     }
     const changeTodoListTitle = (title: string, todoListId: string) => {
-        const action = changeTodoListTitleAC(todoListId,title)
+        const action = changeTodoListTitleAC(todoListId, title)
         dispatchToTodolistsReducer(action)
     }
     const changeTodoListFilter = (nextFilterValue: FilterValuesType, todoListId: string) => {

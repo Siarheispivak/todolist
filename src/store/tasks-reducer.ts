@@ -8,7 +8,22 @@ type TaskActionsType = addTaskACType
     | addTodolistACType
     | removeTodolistACType
 
-export const tasksReducer = (state: TasksStateType, action: TaskActionsType) => {
+
+
+const initialState:TasksStateType = {
+    // [id_1]: [    // "id_1"
+    //     {id: v1(), title: "HTML & CSS", isDone: true},
+    //     {id: v1(), title: "JS", isDone: true},
+    //     {id: v1(), title: "React", isDone: false},
+    // ],
+    // [id_2]: [
+    //     {id: v1(), title: "Milk", isDone: true},
+    //     {id: v1(), title: "Wheat", isDone: false},
+    // ],
+
+}
+
+export const tasksReducer = (state: TasksStateType = initialState, action: TaskActionsType) => {
 
     switch (action.type) {
         case 'ADD-TASK': {
