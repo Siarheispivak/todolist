@@ -23,7 +23,7 @@ test('new task should be added', () => {
 
     const endState = tasksReducer(startState, addTaskAC(todolistID1, newTitle))
 
-    expect(endState.newTask).toBeDefined()
+    expect(endState[todolistID1].length).toBe(4)
     // expect(endState.newTask.title).toBe(newTitle)
 })
 test('should remove correct task', () => {

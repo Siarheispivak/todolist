@@ -116,14 +116,14 @@ function AppWithReducers() {
                     <TodoList
                         key={tl.id}
                         todoListId={tl.id}
-                        tasks={filteredTasks}
+                        // tasks={filteredTasks}
                         title={tl.title}
                         filter={tl.filter}
 
-                        addTask={addTask}
-                        removeTask={removeTask}
-                        changeTaskStatus={changeTaskStatus}
-                        changeTaskTitle={changeTaskTitle}
+                        // addTask={addTask}
+                        // removeTask={removeTask}
+                        // changeTaskStatus={changeTaskStatus}
+                        // changeTaskTitle={changeTaskTitle}
 
                         changeTodoListTitle={changeTodoListTitle}
                         removeTodoList={removeTodoList}

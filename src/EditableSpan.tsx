@@ -11,6 +11,7 @@ const EditableSpan = (props: EditableSpanPropsType) => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
     const [title, setTitle] = useState<string>(props.title)
 
+
     const setLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
@@ -19,6 +20,7 @@ const EditableSpan = (props: EditableSpanPropsType) => {
     const offEditMode = () =>{
         setIsEditMode(false)
         props.changeTitle(title)
+
     }
 
     const onKeyDownOffEditMode = (e:KeyboardEvent<HTMLInputElement>) => {

@@ -1,20 +1,17 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {FilterValuesType, TaskType} from "./App";
+import React, {ChangeEvent} from 'react';
+import {FilterValuesType, TaskType} from "./AppWithRedux";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, ButtonGroup, Checkbox, IconButton, List, ListItem, Typography} from "@mui/material";
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootState} from "./store/store";
+import {addTaskAC, changeTaskStatusAC, ChangeTaskTitleAC, removeTaskAC} from "./store/tasks-reducer";
 
 type TodoListPropsType = {
     todoListId: string
     title: string
-    tasks: Array<TaskType>
     filter: FilterValuesType
-
-    addTask: (title: string, todoListId: string) => void
-    removeTask: (taskId: string, todoListId: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void
-    changeTaskTitle: (taskId: string, newTitle: string, todoListId: string) => void
 
     removeTodoList: (todoListId: string) => void
     changeTodoListTitle: (title: string, todoListId: string) => void
@@ -23,15 +20,47 @@ type TodoListPropsType = {
 
 const TodoList = (props: TodoListPropsType) => {
 
-    const tasksListItems = props.tasks.length
+    const dispatch = useDispatch();
+    const tasks = useSelector<AppRootState, Array<TaskType>> (state => state.tasks[props.todoListId])
+
+    const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+        switch (filter) {
+            case "completed":
+                return tasks.filter(task => task.isDone)
+            case "active":
+                return tasks.filter(task => !task.isDone)
+            default:
+                return tasks
+        }
+    }
+    const filteredTasks = getFilteredTasks(tasks, props.filter)
+    // let allTodolistTasks = tasks
+    // let tasksForTodolist = allTodolistTasks
+    //
+    // if (props.filter === "completed") {
+    //     tasksForTodolist = allTodolistTasks.filter(task => task.isDone)
+    // }
+    // if (props.filter === "active") {
+    //     tasksForTodolist = allTodolistTasks.filter(task => !task.isDone)
+    // }
+
+
+    const tasksListItems = tasks.length
         ? <List>{
-            props.tasks.map((task) => {
-                const removeTask = () => props.removeTask(task.id, props.todoListId)
-                const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
-                    props.changeTaskStatus(task.id, e.currentTarget.checked, props.todoListId)
-                const changeTaskTitle = (title: string) => {
-                    props.changeTaskTitle(task.id, title, props.todoListId)
+            filteredTasks.map((task) => {
+                const removeTask = () => {
+                    const action = removeTaskAC(props.todoListId, task.id);
+                    dispatch(action)
                 }
+                const changeTaskStatus = (e:ChangeEvent<HTMLInputElement>) => dispatch(changeTaskStatusAC(props.todoListId, task.id, e.currentTarget.checked))
+
+
+
+                const changeTaskTitle = (title: string) => {
+                    const action = ChangeTaskTitleAC(props.todoListId, task.id, title)
+                    dispatch(action)
+                }
+
                 return (
                     <ListItem key={task.id} sx={{p: "0px"}}>
                         <Checkbox
@@ -49,15 +78,19 @@ const TodoList = (props: TodoListPropsType) => {
         : <span>List is empty</span>
 
     const addNewTask = (title: string) => {
-        props.addTask(title, props.todoListId)
+        const action = addTaskAC(props.todoListId, title)
+        dispatch(action)
     }
+
     const onClickHandlerCreator = (filter: FilterValuesType) =>
         () => props.changeTodoListFilter(filter, props.todoListId)
     const removeTodoList = () => props.removeTodoList(props.todoListId)
-
     const changeTodoListTitle = (newTitle: string) => {
+
         props.changeTodoListTitle(newTitle, props.todoListId)
+
     }
+
     return (
         <div>
             <Typography variant={"h6"} align={'center'}>
