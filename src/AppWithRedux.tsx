@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import AddItemForm from "./AddItemForm";
-import {Container, Grid, Paper} from "@mui/material";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {addTodolistAC, changeTodoListFilterAC, changeTodoListTitleAC, removeTodolistAC} from "./store/todolist-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./store/store";
+import {Menu} from "@mui/icons-material";
 
 
 export type TaskType = {
@@ -32,7 +33,7 @@ function AppWithRedux() {
     const dispatch = useDispatch();
     const todolists = useSelector<AppRootState, Array<TodoListType>>(state => state.todolists)
 
-    console.log(todolists)
+    // console.log(todolists)
     const removeTodoList = (todoListId: string) => {
         const action = removeTodolistAC(todoListId)
         dispatch(action)
@@ -74,25 +75,25 @@ function AppWithRedux() {
 
     return (
         <div className="App">
-            {/*/!*<Box sx={{ flexGrow: 1 }}>*!/*/}
-            {/*    <AppBar position="static">*/}
-            {/*        <Toolbar>*/}
-            {/*            <IconButton*/}
-            {/*                size="large"*/}
-            {/*                edge="start"*/}
-            {/*                color="inherit"*/}
-            {/*                aria-label="menu"*/}
-            {/*                sx={{ mr: 2 }}*/}
-            {/*            >*/}
-            {/*                <Menu />*/}
-            {/*            </IconButton>*/}
-            {/*            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
-            {/*                TodoLists*/}
-            {/*            </Typography>*/}
-            {/*            <Button color="inherit">Login</Button>*/}
-            {/*        </Toolbar>*/}
-            {/*    </AppBar>*/}
-            {/*/!*</Box>*!/*/}
+            {/*<Box sx={{ flexGrow: 1 }}>*/}
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <Menu />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            TodoLists
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            {/*</Box>*/}
             <Container fixed>
                 <Grid container sx={{p: '10px 0px'}}>
                     <AddItemForm addItem={addTodoList}/>

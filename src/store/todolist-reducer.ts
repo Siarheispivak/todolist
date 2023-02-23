@@ -11,10 +11,7 @@ export type ActionsType =
 
 // export const todo1=v1()
 // export const todo2=v1()
-const initialState:Array<TodoListType> = [
-    // {id: todo1, title: "What to learn", filter: "all"},
-    // {id: todo2, title: "What to buy", filter: "all"}
-]
+const initialState:Array<TodoListType> = []
 
 export const TodolistReducer = (state: Array<TodoListType> = initialState , action: ActionsType) => {
     switch (action.type) {
