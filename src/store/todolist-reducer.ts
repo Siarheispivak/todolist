@@ -9,8 +9,6 @@ export type ActionsType =
     | changeTodoListTitleACType
     | changeTodoListFilterACType
 
-// export const todo1=v1()
-// export const todo2=v1()
 const initialState:Array<TodoListType> = []
 
 export const TodolistReducer = (state: Array<TodoListType> = initialState , action: ActionsType) => {

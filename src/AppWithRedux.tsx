@@ -33,7 +33,6 @@ function AppWithRedux() {
     const dispatch = useDispatch();
     const todolists = useSelector<AppRootState, Array<TodoListType>>(state => state.todolists)
 
-    // console.log(todolists)
     const removeTodoList = (todoListId: string) => {
         const action = removeTodolistAC(todoListId)
         dispatch(action)

@@ -61,6 +61,12 @@ function AppWithReducers() {
 
     })
 
+
+
+    // Фенкции "ниже" не используются, ВСЁ ПОТОМУ ЧТО МЫ ТАСКИ ПЕРЕНЕСЛИ В TODOLIST.TSX
+    // ПОТОМУ ЧТО ДЕЛАЛИ AppWithRedux,там надо было так сделать...
+    // А из-за того что здесь нету useSelector и useDispatch, то мы их не переносили в этом App)
+
     const removeTask = (taskId: string, todoListId: string) => {
         const action = removeTaskAC(todoListId, taskId);
         dispatchToTasksReducer(action)
@@ -124,6 +130,10 @@ function AppWithReducers() {
                         // removeTask={removeTask}
                         // changeTaskStatus={changeTaskStatus}
                         // changeTaskTitle={changeTaskTitle}
+
+                        // ЗАКАМЕНЧЕННО ВСЁ ПОТОМУ ЧТО МЫ ТАСКИ ПЕРЕНЕСЛИ В TODOLIST.TSX
+                        // ПОТОМУ ЧТО ДЕЛАЛИ AppWithRedux,там надо было так сделать...
+                        // А из-за того что здесь нету useSelector и useDispatch, то мы их не переносили)
 
                         changeTodoListTitle={changeTodoListTitle}
                         removeTodoList={removeTodoList}
