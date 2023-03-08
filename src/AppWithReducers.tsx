@@ -96,8 +96,8 @@ function AppWithReducers() {
         dispatchToTasksReducer(action)
     }
     const changeTodoListTitle = (title: string, todoListId: string) => {
-        const action = changeTodoListTitleAC(todoListId, title)
-        dispatchToTodolistsReducer(action)
+
+        dispatchToTodolistsReducer(changeTodoListTitleAC(todoListId, title))
     }
     const changeTodoListFilter = (nextFilterValue: FilterValuesType, todoListId: string) => {
         dispatchToTodolistsReducer(changeTodoListFilterAC(todoListId, nextFilterValue))
@@ -135,9 +135,9 @@ function AppWithReducers() {
                         // ПОТОМУ ЧТО ДЕЛАЛИ AppWithRedux,там надо было так сделать...
                         // А из-за того что здесь нету useSelector и useDispatch, то мы их не переносили)
 
-                        changeTodoListTitle={changeTodoListTitle}
-                        removeTodoList={removeTodoList}
-                        changeTodoListFilter={changeTodoListFilter}
+                        // changeTodoListTitle={changeTodoListTitle}
+                        // removeTodoList={removeTodoList}
+                        // changeTodoListFilter={changeTodoListFilter}
                     />
                 </Paper>
             </Grid>

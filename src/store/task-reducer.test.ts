@@ -90,10 +90,6 @@ test('change specified task title', () => {
     expect(endState[todolistID1][1].title).toBe('newTitle')
     expect(endState[todolistID2][1].title).toBe('GraphQL')
 })
-
-
-
-
 test('correct task should be added to correct array', () => {
 
     let todolistID1 = v1()
@@ -121,7 +117,6 @@ test('correct task should be added to correct array', () => {
     expect(endState[todolistID2][0].title).toBe('juice')
     expect(endState[todolistID2][0].isDone).toBe(false)
 })
-
 test('correct task should be deleted from correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
@@ -153,7 +148,6 @@ test('correct task should be deleted from correct array', () => {
         ]
     })
 })
-
 test('status of specified task should be changed', () => {
     let todolistID1 = v1()
     let todolistID2 = v1()
@@ -177,7 +171,6 @@ test('status of specified task should be changed', () => {
     expect(endState[todolistID2][1].isDone).toBe(false)
     expect(endState[todolistID1][1].isDone).toBe(true)
 })
-
 test('title of specified task should be changed', () => {
     let todolistID1 = v1()
     let todolistID2 = v1()

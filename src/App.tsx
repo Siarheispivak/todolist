@@ -124,9 +124,9 @@ function App() {
                         // changeTaskStatus={changeTaskStatus}
                         // changeTaskTitle={changeTaskTitle}
 
-                        changeTodoListTitle={changeTodoListTitle}
-                        removeTodoList={removeTodoList}
-                        changeTodoListFilter={changeTodoListFilter}
+                        // changeTodoListTitle={changeTodoListTitle}
+                        // removeTodoList={removeTodoList}
+                        // changeTodoListFilter={changeTodoListFilter}
                     />
                 </Paper>
             </Grid>

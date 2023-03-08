@@ -7,15 +7,12 @@ import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentati
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./store/store";
 import {addTaskAC, changeTaskStatusAC, ChangeTaskTitleAC, removeTaskAC} from "./store/tasks-reducer";
+import {changeTodoListFilterAC, changeTodoListTitleAC, removeTodolistAC} from "./store/todolist-reducer";
 
 type TodoListPropsType = {
     todoListId: string
     title: string
     filter: FilterValuesType
-
-    removeTodoList: (todoListId: string) => void
-    changeTodoListTitle: (title: string, todoListId: string) => void
-    changeTodoListFilter: (nextFilterValue: FilterValuesType, todoListId: string) => void
 }
 
 const TodoList = (props: TodoListPropsType) => {
@@ -34,16 +31,6 @@ const TodoList = (props: TodoListPropsType) => {
         }
     }
     const filteredTasks = getFilteredTasks(tasks, props.filter)
-    // let allTodolistTasks = tasks
-    // let tasksForTodolist = allTodolistTasks
-    //
-    // if (props.filter === "completed") {
-    //     tasksForTodolist = allTodolistTasks.filter(task => task.isDone)
-    // }
-    // if (props.filter === "active") {
-    //     tasksForTodolist = allTodolistTasks.filter(task => !task.isDone)
-    // }
-
 
     const tasksListItems = tasks.length
         ? <List>{
@@ -83,12 +70,10 @@ const TodoList = (props: TodoListPropsType) => {
     }
 
     const onClickHandlerCreator = (filter: FilterValuesType) =>
-        () => props.changeTodoListFilter(filter, props.todoListId)
-    const removeTodoList = () => props.removeTodoList(props.todoListId)
+        () => dispatch(changeTodoListFilterAC(props.todoListId, filter))
+    const removeTodoList = () => dispatch(removeTodolistAC(props.todoListId))
     const changeTodoListTitle = (newTitle: string) => {
-
-        props.changeTodoListTitle(newTitle, props.todoListId)
-
+        dispatch(changeTodoListTitleAC(props.todoListId, newTitle))
     }
 
     return (
