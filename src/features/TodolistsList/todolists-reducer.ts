@@ -41,7 +41,7 @@ export const setTodolistsAC = (todolists: Array<TodolistType>) => ({type: 'SET-T
 export const changeTodolistEntityStatusAC = (id: string,entityStatus:RequestStatusType) => ({type: 'CHANGE-ENTITY-STATUS', id,entityStatus} as const)
 
 // thunks
-export const fetchTodolistsTC = () => {
+export const fetchTodolistsTC  = () => {
     return (dispatch: Dispatch<TodolistActionsType>) => {
         todolistsAPI.getTodolists()
             .then((res) => {
@@ -59,7 +59,7 @@ export const removeTodolistTC = (todolistId: string) => {
         dispatch(setLoadingStatus('loading'))
         dispatch(changeTodolistEntityStatusAC(todolistId,'loading'))
         todolistsAPI.deleteTodolist(todolistId)
-            .then((res) => {
+            .then(() => {   ///res
                     dispatch(removeTodolistAC(todolistId))
                     dispatch(setLoadingStatus('succeeded'))
             })
