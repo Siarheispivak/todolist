@@ -60,8 +60,8 @@ function App() {
             </AppBar>
             <Container fixed>
                 <Routes>
-                    {/*<Route path={'/'} element={<Navigate to={'/todolist'}/>}/>*/}
-                    <Route path={'/'} element={<TodolistsList/>}/>
+                    <Route path={'/'} element={<Navigate to={'/todolist'}/>}/>
+                    <Route path={'/todolist'} element={<TodolistsList/>}/>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'/404'} element={<h1
                         style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>404:Page not
